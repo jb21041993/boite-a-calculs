@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menu latéral simple</title>
+  <style>
+    /* Conteneur du menu */
+    #menu-lateral {
+      width: 200px;           /* largeur fixe */
+      height: 100vh;          /* pleine hauteur de la fenêtre */
+      background-color: #eee; /* couleur de fond claire */
+      padding: 10px;
+      box-sizing: border-box;
+      float: left;            /* aligné à gauche */
+    }
+
+    /* Liste sans puces */
+    #menu-lateral ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Liens du menu */
+    #menu-lateral li {
+      margin-bottom: 10px;
+    }
+
+    #menu-lateral a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: block; /* lien en bloc pour clic sur toute la largeur */
+      padding: 5px;
+    }
+
+    /* Changement de couleur au survol */
+    #menu-lateral a:hover {
+      background-color: #ccc;
+    }
+
+    /* Contenu principal à côté */
+    #contenu {
+      margin-left: 220px; /* espace pour laisser place au menu */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="menu-lateral">
+    <ul>
+      <li><a href="essai.html">Accueil</a></li>
+      <li><a href="4eme.html">Quatrième</a></li>
+      <li><a href="3eme.html">Troisième</a></li>
+      <li><a href="seconde.html">Seconde</a></li>
+      <li><a href="term.html">Terminale Spécialité</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="contenu">
+    <h1>Bienvenue sur la page principale</h1>
+    <p>Voici le contenu à côté du menu latéral simple.</p>
+  </div>
+
+</body>
+</html>

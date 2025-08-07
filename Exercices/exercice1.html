@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercice 1</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #F5F5F5; /* bleu clair */
+      padding: 40px;
+    }
+
+    .solution-container {
+      position: relative;
+      border-left: 4px solid black;
+      border-bottom: 4px solid black;
+      padding-left: 60px;
+      padding-bottom: 30px;
+      margin-top: 50px;
+      max-width: 400px;
+    }
+
+    .numero {
+      position: absolute;
+      left: -25px;
+      top: -10px;
+      background-color: #fde9da;
+      border: 2px solid black;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 38px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .titre {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 20px;
+      position: relative;
+      left: -25px;
+    }
+
+    .solution {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      background: #fde9da;
+      border-left: 4px solid #fbca84;
+      padding: 0 15px;
+      margin-top: 0px;
+    }
+    .solution.open {
+      max-height: 300px;
+      padding: 10px 15px;
+    }
+    .toggle-container {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .arrow {
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+    .arrow.down {
+      transform: rotate(90deg);
+    }
+    .feedback {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .feedback button {
+      font-size: 24px;
+      margin: 0 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+
+<div class="solution-container">
+  <div class="numero">1</div>
+  <div class="titre">Calculer : \(A=(-12)+(-15)\)</div>
+  
+
+  <div class="toggle-container" onclick="toggleSolution()">
+    <span id="arrow" class="arrow">▶</span>
+    <span>Voir la solution</span>
+  </div>
+
+  <div id="solution" class="solution">
+    <p><strong>Solution :</strong> <br>  </p>
+        
+  </p> \(A=(\textcolor{blue}{-}12)+(\textcolor{blue}{-}15)\)</p>
+
+  </p> \(A=(\textcolor{blue}{-}27)\)</p>
+
+    <div class="feedback">
+    <p>As-tu réussi cet exercice ?</p>
+    <button onclick="markAsDone(1)">👍</button>
+    <button onclick="handleFailure()">👎</button>
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  <script>
+    function toggleSolution() {
+      const solution = document.getElementById("solution");
+      const arrow = document.getElementById("arrow");
+      solution.classList.toggle("open");
+      arrow.classList.toggle("down");
+    }
+
+    function markAsDone(num) {
+      // Marquer l'exercice comme terminé
+      const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+      if (!done.includes(num)) {
+        done.push(num);
+        localStorage.setItem('doneExercises', JSON.stringify(done));
+      }
+      // Rediriger vers la page du tableau
+      window.location.href = "../Boite_4_1.html";
+    }
+
+    function handleFailure() {
+    alert("Courage ! Réessaie plus tard.");
+    window.location.href = "../Boite_4_1.html";
+  }
+  </script>
+
+
+
+</body>
+</html>

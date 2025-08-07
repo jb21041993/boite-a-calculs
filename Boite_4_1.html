@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tableau des exercices</title>
+  <style>
+       body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    td {
+      width: 60px;
+      height: 60px;
+      border: 2px solid orange;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 50%;
+      background-color: #fdebd0;
+      border: 2px solid black;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    a:hover {
+      background-color: #ffe0a3;
+    }
+
+  </style>
+</head>
+<body>
+
+
+    <button id="tirageBtn" onclick="tirageAnime()">🎯 Tirage dynamique</button>
+
+  <h1>Choisis un exercice</h1>
+
+  <table id="exerciseTable">
+    <!-- Généré dynamiquement par JavaScript -->
+  </table>
+
+  <script>
+  // ... après avoir généré le tableau
+  if (done.length === total) {
+    afficherFelicitation();
+  }
+
+  function afficherFelicitation() {
+    const felicitation = document.createElement('div');
+    felicitation.innerHTML = "🎉 Bravo ! Tu as terminé toute la boîte ! 🎉";
+    felicitation.style.fontSize = '24px';
+    felicitation.style.fontWeight = 'bold';
+    felicitation.style.marginTop = '30px';
+    felicitation.style.animation = 'clignote 1s infinite alternate';
+    document.body.appendChild(felicitation);
+
+    // Animation de fond (feu d’artifice ou couleur)
+    document.body.style.background = 'linear-gradient(45deg, #c2f0c2, #f0c2c2)';
+  }
+
+  // Animation CSS clignotante
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes clignote {
+      0% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+
+
+<script>
+function tirageAnime() {
+  const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+  const liens = Array.from(document.querySelectorAll('#exerciseTable a'));
+  const liensDisponibles = liens.filter(lien => {
+    const num = parseInt(lien.textContent);
+    return !done.includes(num);
+  });
+
+  if (liensDisponibles.length === 0) {
+    alert("Tous les exercices ont été réalisés !");
+    return;
+  }
+
+  let index = 0;
+  let steps = 25;  // réduit à 25 étapes
+  let delay = 30;  // démarre rapidement
+  let lienFinal = null;
+
+  function surlignerSuivant(step) {
+    liens.forEach(lien => lien.style.backgroundColor = '');
+    lienFinal = liensDisponibles[index];
+    lienFinal.style.backgroundColor = 'yellow';
+
+    index = (index + 1) % liensDisponibles.length;
+
+    if (step < steps) {
+      delay += 10; // ralentissement progressif
+      setTimeout(() => surlignerSuivant(step + 1), delay);
+    } else {
+      lienFinal.style.backgroundColor = 'lightgreen';
+      setTimeout(() => {
+        window.location.href = lienFinal.href;
+      }, 700);
+    }
+  }
+
+  surlignerSuivant(0);
+}
+
+
+</script>
+
+
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+if (params.get("reset") === "true") {
+  localStorage.removeItem('doneExercises');
+}
+    const total = 30;
+    const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+
+    const table = document.getElementById('exerciseTable');
+
+     let counter = 1;
+    for (let row = 0; row < 6; row++) {
+      const tr = document.createElement('tr');
+      for (let col = 0; col < 5; col++) {
+        const td = document.createElement('td');
+        if (counter <= total) {
+          const a = document.createElement('a');
+          a.textContent = counter;
+          a.href = `Exercices/exercice${counter}.html`;
+          if (done.includes(counter)) {
+            a.classList.add('done');
+          }
+          td.appendChild(a);
+          counter++;
+        }
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+    if (done.length === total) {
+  afficherFelicitation();
+  document.getElementById('tirageBtn')?.setAttribute('disabled', true);
+}
+  </script>
+
+  <button onclick="resetDone()" style="margin-top: 20px;">🔄 Réinitialiser les exercices</button>
+
+<script>
+    function resetDone() {
+  localStorage.removeItem('doneExercises');
+  location.reload();
+}
+  </script>
+
+
+
+
+
+
+</body>
+</html>
