@@ -135,6 +135,7 @@
         done.push(num);
         localStorage.setItem('doneExercises', JSON.stringify(done));
       }
+      localStorage.removeItem(`chrono_exo_${num}`);
       // Rediriger vers la page du tableau
       window.location.href = "../index.html";
     }
