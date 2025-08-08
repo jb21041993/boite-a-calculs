@@ -92,7 +92,8 @@
 
 
 <script>
-function tirageAnime() {
+ // Fonction tirage avec animation
+  function tirageAnime() {
   const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
   const liens = Array.from(document.querySelectorAll('#exerciseTable a'));
   const liensDisponibles = liens.filter(lien => {
@@ -105,30 +106,35 @@ function tirageAnime() {
     return;
   }
 
-  let index = 0;
-  let steps = 25;  // réduit à 25 étapes
-  let delay = 30;  // démarre rapidement
   let lienFinal = null;
+  let intervalId = null;
+  const duree = 3000; // Durée totale du tirage en ms
+  const interval = 300; // Intervalle de changement de surlignage en ms
+  const iterations = Math.floor(duree / interval);
+  let count = 0;
 
-  function surlignerSuivant(step) {
-    liens.forEach(lien => lien.style.backgroundColor = '');
-    lienFinal = liensDisponibles[index];
-    lienFinal.style.backgroundColor = 'yellow';
-
-    index = (index + 1) % liensDisponibles.length;
-
-    if (step < steps) {
-      delay += 10; // ralentissement progressif
-      setTimeout(() => surlignerSuivant(step + 1), delay);
-    } else {
-      lienFinal.style.backgroundColor = 'lightgreen';
-      setTimeout(() => {
-        window.location.href = lienFinal.href;
-      }, 700);
-    }
+  function pulseFinal(element) {
+    element.classList.add('pulse');
+    setTimeout(() => element.classList.remove('pulse'), 1500);
   }
 
-  surlignerSuivant(0);
+  intervalId = setInterval(() => {
+    liens.forEach(lien => lien.style.backgroundColor = '');
+    // Choisir un indice aléatoire
+    const randIndex = Math.floor(Math.random() * liensDisponibles.length);
+    lienFinal = liensDisponibles[randIndex];
+    lienFinal.style.backgroundColor = '#a3d2f7';  // bleu clair doux
+
+    count++;
+    if (count >= iterations) {
+      clearInterval(intervalId);
+      lienFinal.style.backgroundColor = 'lightgreen';
+      pulseFinal(lienFinal);
+      setTimeout(() => {
+        window.location.href = lienFinal.href;
+      }, 1500);
+    }
+  }, interval);
 }
 
 
