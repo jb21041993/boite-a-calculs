@@ -290,8 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  // Code secret (à personnaliser)
-  const SECRET_CODE = "1234";
+  //
+  const jagger = "1234";
 
   // Cibler tous les liens des menus déroulants
   document.querySelectorAll('.dropdown-content a').forEach(link => {
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          if (result.value === SECRET_CODE) {
+          if (result.value === jagger) {
             // Si code correct → aller vers la page
             window.location.href = link.href;
           } else {
