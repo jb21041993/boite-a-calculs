@@ -40,11 +40,34 @@
     }
 
       /* Style pour lien désactivé */
-  .disabled-link {
+ .disabled-link {
     color: gray !important;
     pointer-events: none;
     opacity: 0.6;
     text-decoration: none;
+    position: relative;
+  }
+
+  /* Style de l’infobulle */
+  .disabled-link::after {
+    content: "🚧 En construction";
+    position: absolute;
+    bottom: 120%; /* au-dessus du lien */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .disabled-link:hover::after {
+    opacity: 1;
   }
 
     .container {
@@ -237,34 +260,27 @@
 
   <script>
     // Empêche le clic des boutons principaux de recharger la page
-    document.querySelectorAll('.level-button').forEach(btn => {
-      btn.addEventListener('click', e => {
-        if (btn.getAttribute('href') === '#') {
-          e.preventDefault();
-        }
-      });
-    });
+   document.addEventListener("DOMContentLoaded", () => {
+  const liens = document.querySelectorAll(".dropdown a, .level-button, table a");
 
-    document.addEventListener("DOMContentLoaded", () => {
-    const liens = document.querySelectorAll(".dropdown a, .level-button"); // sélecteur selon ton code
+  liens.forEach(lien => {
+    const url = lien.getAttribute("href");
 
-    liens.forEach(lien => {
-      const url = lien.getAttribute("href");
+    // Ignorer les liens externes ou vides
+    if (!url || url.startsWith("#") || url.startsWith("http")) return;
 
-      // Ignorer les ancres ou liens externes
-      if (!url || url.startsWith("#") || url.startsWith("http")) return;
-
-      fetch(url, { method: "HEAD" })
-        .then(response => {
-          if (!response.ok) {
-            lien.classList.add("disabled-link");
-          }
-        })
-        .catch(() => {
+    fetch(url, { method: "HEAD" })
+      .then(response => {
+        if (!response.ok) {
           lien.classList.add("disabled-link");
-        });
-    });
+        }
+      })
+      .catch(() => {
+        lien.classList.add("disabled-link");
+      });
   });
+});
+
   </script>
 
   
