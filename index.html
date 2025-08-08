@@ -284,6 +284,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+ </script>
+
+<!-- SweetAlert2 CSS & JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // Code secret (à personnaliser)
+  const SECRET_CODE = "1234";
+
+  // Cibler tous les liens des menus déroulants
+  document.querySelectorAll('.dropdown-content a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Empêche la navigation immédiate
+
+      Swal.fire({
+        title: '🔐 Accès protégé',
+        text: 'Veuillez entrer le code secret pour continuer',
+        input: 'password',
+        inputPlaceholder: 'Entrez le code',
+        showCancelButton: true,
+        confirmButtonText: 'Valider',
+        cancelButtonText: 'Annuler',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        background: '#f7f7f7',
+        customClass: {
+          input: 'swal2-input'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (result.value === SECRET_CODE) {
+            // Si code correct → aller vers la page
+            window.location.href = link.href;
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Code incorrect',
+              text: 'Accès refusé !'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+
   
 
 </body>
