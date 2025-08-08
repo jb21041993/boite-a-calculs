@@ -54,7 +54,9 @@
 
     <button id="tirageBtn" onclick="tirageAnime()">🎯 Tirage dynamique</button>
 
-  <h1>Choisis un exercice</h1>
+      <button onclick="window.location.href='index.html'">⬅️ Retour à l'accueil</button>
+
+  <h1>Liste des exercices</h1>
 
   <table id="exerciseTable">
     <!-- Généré dynamiquement par JavaScript -->
@@ -179,7 +181,7 @@ if (params.get("reset") === "true") {
 
   <button onclick="resetDone()" style="margin-top: 20px;">🔄 Réinitialiser les exercices</button>
 
-  <button onclick="window.location.href='index.html'">⬅️ Retour à l'accueil</button>
+
 
 <script>
     function resetDone() {
