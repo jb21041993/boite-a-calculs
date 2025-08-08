@@ -29,7 +29,7 @@
       height: 40px;
       line-height: 40px;
       border-radius: 50%;
-      background-color: #4583e8;
+      background-color: #99c2f4;
       border: 2px solid black;
       color: black;
       text-decoration: none;
@@ -123,8 +123,8 @@
   intervalId = setInterval(() => {
     liens.forEach(lien => lien.style.backgroundColor = '');
     // Choisir un indice aléatoire
-    const randBoite_4_1 = Math.floor(Math.random() * liensDisponibles.length);
-    lienFinal = liensDisponibles[randBoite_4_1];
+    const randBoite_term_1 = Math.floor(Math.random() * liensDisponibles.length);
+    lienFinal = liensDisponibles[randBoite_term_1];
     lienFinal.style.backgroundColor = '#a3d2f7';  // bleu clair doux
 
     count++;
