@@ -2,194 +2,178 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Tableau des exercices</title>
+  <title>Page d'accueil - Exercices de Maths</title>
   <style>
-       body {
-      font-family: sans-serif;
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #c7c4bd, #d4cebe);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg,  #000000,#c7c4bd);
+      color: white;
+      padding: 30px 0;
       text-align: center;
-      padding: 30px;
-    }
-
-    table {
-      border-collapse: collapse;
-      margin: 0 auto;
-    }
-
-    td {
-      width: 60px;
-      height: 60px;
-      border: 2px solid orange;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      border-radius: 50%;
-      background-color: #fdebd0;
-      border: 2px solid black;
-      color: black;
-      text-decoration: none;
+      font-size: 32px;
       font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
-    .done {
-      text-decoration: line-through;
-      color: gray;
-      pointer-events: none;
-      opacity: 0.5;
+    .container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
     }
 
-    a:hover {
-      background-color: #ffe0a3;
+ .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* rester sur une seule ligne */
+  margin-top: 40px;
+}
+/* Uniformiser les boutons avec et sans menu */
+.level-button,
+.dropdown {
+  width: 220px; /* Même largeur pour tous */
+}
+
+    .dropdown {
+  position: relative;
+  width: 200px; /* largeur du bouton */
+}
+
+  /* Boutons */
+.level-button {
+  background-color: black;
+  color: white;
+  padding: 20px 0;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover et zoom */
+.level-button:hover {
+  transform: scale(1.05);
+}
+
+    /* Hover personnalisé pour chaque bouton */
+    .troisieme:hover {
+      background-color: #ef5c52; /* rouge */
+      color: white;
     }
+
+    .terminale:hover {
+      background-color: #2196f3; /* bleu */
+      color: white;
+    }
+
+    .seconde:hover {
+      background-color: #ce6aef; /* vert */
+      color: white;
+    }
+
+    .quatrieme:hover {
+      background-color: #e8a745; /* orange */
+      color: white;
+    }
+
+        /* Dropdown menu */
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%; /* Même largeur que le bouton parent */
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+  z-index: 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+/* Afficher le menu au survol */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 
   </style>
 </head>
 <body>
 
+  <header>
+    Bienvenue sur la page de M. Joseph
+  </header>
 
-    <button id="tirageBtn" onclick="tirageAnime()">🎯 Tirage dynamique</button>
+  <div class="container">
+    <div class="button-row">
 
-  <h1>Choisis un exercice</h1>
+  <div class="dropdown">
+    <a href="#" class="level-button quatrieme">Quatrième</a>
+    <div class="dropdown-content">
+      <a href="Boite_4_1.html">Boîte à calculs n°1</a>
+      <a href="quatrieme_chap2.html">Chapitre 2</a>
+      <a href="quatrieme_chap3.html">Chapitre 3</a>
+    </div>
+  </div>
 
-  <table id="exerciseTable">
-    <!-- Généré dynamiquement par JavaScript -->
-  </table>
+  <div class="dropdown">
+    <a href="#" class="level-button troisieme">Troisième</a>
+    <div class="dropdown-content">
+      <a href="troisieme_chap1.html">Chapitre 1</a>
+      <a href="troisieme_chap2.html">Chapitre 2</a>
+      <a href="troisieme_chap3.html">Chapitre 3</a>
+    </div>
+  </div>
 
-  <script>
-  // ... après avoir généré le tableau
-  if (done.length === total) {
-    afficherFelicitation();
-  }
+  <div class="dropdown">
+    <a href="#" class="level-button seconde">Seconde</a>
+    <div class="dropdown-content">
+      <a href="seconde_chap1.html">Chapitre 1</a>
+      <a href="seconde_chap2.html">Chapitre 2</a>
+      <a href="seconde_chap3.html">Chapitre 3</a>
+    </div>
+  </div>
 
-  function afficherFelicitation() {
-    const felicitation = document.createElement('div');
-    felicitation.innerHTML = "🎉 Bravo ! Tu as terminé toute la boîte ! 🎉";
-    felicitation.style.fontSize = '24px';
-    felicitation.style.fontWeight = 'bold';
-    felicitation.style.marginTop = '30px';
-    felicitation.style.animation = 'clignote 1s infinite alternate';
-    document.body.appendChild(felicitation);
+  <div class="dropdown">
+    <a href="#" class="level-button terminale">Terminale Spécialité</a>
+    <div class="dropdown-content">
+      <a href="terminale_chap1.html">Chapitre 1</a>
+      <a href="terminale_chap2.html">Chapitre 2</a>
+      <a href="terminale_chap3.html">Chapitre 3</a>
+    </div>
+  </div>
 
-    // Animation de fond (feu d’artifice ou couleur)
-    document.body.style.background = 'linear-gradient(45deg, #c2f0c2, #f0c2c2)';
-  }
-
-  // Animation CSS clignotante
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes clignote {
-      0% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-  `;
-  document.head.appendChild(style);
-</script>
-
-
-<script>
- // Fonction tirage avec animation
-  function tirageAnime() {
-  const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
-  const liens = Array.from(document.querySelectorAll('#exerciseTable a'));
-  const liensDisponibles = liens.filter(lien => {
-    const num = parseInt(lien.textContent);
-    return !done.includes(num);
-  });
-
-  if (liensDisponibles.length === 0) {
-    alert("Tous les exercices ont été réalisés !");
-    return;
-  }
-
-  let lienFinal = null;
-  let intervalId = null;
-  const duree = 3000; // Durée totale du tirage en ms
-  const interval = 300; // Intervalle de changement de surlignage en ms
-  const iterations = Math.floor(duree / interval);
-  let count = 0;
-
-  function pulseFinal(element) {
-    element.classList.add('pulse');
-    setTimeout(() => element.classList.remove('pulse'), 1500);
-  }
-
-  intervalId = setInterval(() => {
-    liens.forEach(lien => lien.style.backgroundColor = '');
-    // Choisir un indice aléatoire
-    const randIndex = Math.floor(Math.random() * liensDisponibles.length);
-    lienFinal = liensDisponibles[randIndex];
-    lienFinal.style.backgroundColor = '#a3d2f7';  // bleu clair doux
-
-    count++;
-    if (count >= iterations) {
-      clearInterval(intervalId);
-      lienFinal.style.backgroundColor = 'orange';
-      pulseFinal(lienFinal);
-      setTimeout(() => {
-        window.location.href = lienFinal.href;
-      }, 1500);
-    }
-  }, interval);
-}
-
-
-</script>
-
-
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-if (params.get("reset") === "true") {
-  localStorage.removeItem('doneExercises');
-}
-    const total = 30;
-    const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
-
-    const table = document.getElementById('exerciseTable');
-
-     let counter = 1;
-    for (let row = 0; row < 6; row++) {
-      const tr = document.createElement('tr');
-      for (let col = 0; col < 5; col++) {
-        const td = document.createElement('td');
-        if (counter <= total) {
-          const a = document.createElement('a');
-          a.textContent = counter;
-          a.href = `Exercices/exercice${counter}.html`;
-          if (done.includes(counter)) {
-            a.classList.add('done');
-          }
-          td.appendChild(a);
-          counter++;
-        }
-        tr.appendChild(td);
-      }
-      table.appendChild(tr);
-    }
-    if (done.length === total) {
-  afficherFelicitation();
-  document.getElementById('tirageBtn')?.setAttribute('disabled', true);
-}
-  </script>
-
-  <button onclick="resetDone()" style="margin-top: 20px;">🔄 Réinitialiser les exercices</button>
-
-<script>
-    function resetDone() {
-  localStorage.removeItem('doneExercises');
-  location.reload();
-}
-  </script>
-
-
-
-
-
+</div>
+  </div>
 
 </body>
 </html>
