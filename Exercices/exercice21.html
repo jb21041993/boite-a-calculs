@@ -43,19 +43,22 @@
       left: -25px;
     }
 
-    .solution {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      background: #f3f3f3;
-      border-left: 4px solid #f09412;
-      padding: 0 15px;
-      margin-top: 0px;
-    }
-    .solution.open {
-      max-height: 300px;
-      padding: 10px 15px;
-    }
+   .solution {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  background: #f3f3f3;
+  border-left: 4px solid #f09412;
+  padding: 0 15px;
+  margin-top: 0px;
+}
+
+/* Lorsque la solution est ouverte : hauteur max fixée + défilement vertical */
+.solution.open {
+  max-height: 300px;     /* tu peux ajuster cette valeur */
+  overflow-y: auto;      /* défilement vertical */
+  padding: 10px 15px;
+}
     .toggle-container {
       cursor: pointer;
       display: flex;
