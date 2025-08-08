@@ -3,198 +3,306 @@
 <head>
   <meta charset="UTF-8" />
   <title>Tableau des exercices</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-       body {
-      font-family: sans-serif;
+    /* Reset + base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #c7c4bd, #d4cebe);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      padding: 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #000000, #c7c4bd);
+      color: white;
+      padding: 40px 20px;
       text-align: center;
-      padding: 30px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      user-select: none;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255 255 255 / 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #222;
     }
 
     table {
-      border-collapse: collapse;
       margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 12px 12px;
     }
 
     td {
       width: 60px;
       height: 60px;
-      border: 2px solid orange;
       text-align: center;
       vertical-align: middle;
     }
 
-    a {
+    a.exercise-link {
       display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
+      width: 52px;
+      height: 52px;
+      line-height: 52px;
       border-radius: 50%;
-      background-color: #fdebd0;
-      border: 2px solid black;
-      color: black;
+      background-color: rgba(255 255 255 / 0.7);
+      border: 2px solid #333;
+      color: #333;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      user-select: none;
+      cursor: pointer;
     }
 
-    .done {
+    a.exercise-link:hover:not(.done) {
+      background-color: #3498db;
+      color: white;
+      border-color: #2980b9;
+      box-shadow: 0 6px 12px rgba(41, 128, 185, 0.6);
+      transform: scale(1.15);
+    }
+
+    a.exercise-link.done {
       text-decoration: line-through;
       color: gray;
       pointer-events: none;
       opacity: 0.5;
+      background-color: rgba(200 200 200 / 0.5);
+      border-color: gray;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
     }
 
-    a:hover {
-      background-color: #ffe0a3;
+    button {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 14px 26px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 10px 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #3498db;
+      box-shadow: 0 8px 16px rgba(52, 152, 219, 0.7);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Message de félicitations */
+    #congratsMessage {
+      margin-top: 40px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #27ae60;
+      animation: clignote 1.5s infinite alternate;
+      user-select: none;
+    }
+
+    @keyframes clignote {
+      0% {opacity: 1;}
+      100% {opacity: 0.3;}
+    }
+
+    /* Animation pulse pour tirage */
+    .pulse {
+      animation: pulseAnim 1.5s ease forwards;
+    }
+
+    @keyframes pulseAnim {
+      0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); }
+      70% { box-shadow: 0 0 15px 10px rgba(52, 152, 219, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      a.exercise-link {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 1rem;
+      }
+      table {
+        border-spacing: 8px 8px;
+      }
+      button {
+        width: 90%;
+        margin: 10px auto;
+      }
     }
 
   </style>
 </head>
 <body>
 
+<header>
+  Tableau des exercices
+</header>
 
-    <button id="tirageBtn" onclick="tirageAnime()">🎯 Tirage dynamique</button>
+<div class="container">
 
-      <button onclick="window.location.href='index.html'">⬅️ Retour à l'accueil</button>
+  <div>
+    <button id="tirageBtn" onclick="tirageAnime()">
+      <i class="fas fa-bullseye"></i> Tirage dynamique
+    </button>
+
+    <button onclick="window.location.href='index.html'">
+      <i class="fas fa-arrow-left"></i> Retour à l'accueil
+    </button>
+  </div>
 
   <h1>Liste des exercices</h1>
 
-  <table id="exerciseTable">
-    <!-- Généré dynamiquement par JavaScript -->
+  <table id="exerciseTable" aria-label="Tableau des exercices">
+    <!-- Tableau généré dynamiquement -->
   </table>
 
-  <script>
-  // ... après avoir généré le tableau
-  if (done.length === total) {
-    afficherFelicitation();
+  <button onclick="resetDone()" style="margin-top: 30px;">
+    <i class="fas fa-undo"></i> Réinitialiser les exercices
+  </button>
+
+  <div id="congratsMessage" aria-live="polite"></div>
+</div>
+
+<script>
+  // Variables et récupération des exercices faits
+  const total = 30;
+  const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+  const table = document.getElementById('exerciseTable');
+  const congratsMessage = document.getElementById('congratsMessage');
+
+  // Génération du tableau d'exercices
+  let counter = 1;
+  for (let row = 0; row < 6; row++) {
+    const tr = document.createElement('tr');
+    for (let col = 0; col < 5; col++) {
+      const td = document.createElement('td');
+      if (counter <= total) {
+        const a = document.createElement('a');
+        a.textContent = counter;
+        a.href = `Exercices/exercice${counter}.html`;
+        a.classList.add('exercise-link');
+        if (done.includes(counter)) {
+          a.classList.add('done');
+        }
+        td.appendChild(a);
+        counter++;
+      }
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
   }
 
-  function afficherFelicitation() {
-    const felicitation = document.createElement('div');
-    felicitation.innerHTML = "🎉 Bravo ! Tu as terminé toute la boîte ! 🎉";
-    felicitation.style.fontSize = '24px';
-    felicitation.style.fontWeight = 'bold';
-    felicitation.style.marginTop = '30px';
-    felicitation.style.animation = 'clignote 1s infinite alternate';
-    document.body.appendChild(felicitation);
-
-    // Animation de fond (feu d’artifice ou couleur)
+  // Affiche message de félicitations si tous faits
+  if (done.length === total) {
+    congratsMessage.textContent = "🎉 Bravo ! Tu as terminé toute la boîte ! 🎉";
+    document.getElementById('tirageBtn').disabled = true;
     document.body.style.background = 'linear-gradient(45deg, #c2f0c2, #f0c2c2)';
   }
 
-  // Animation CSS clignotante
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes clignote {
-      0% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-  `;
-  document.head.appendChild(style);
-</script>
-
-
-<script>
- // Fonction tirage avec animation
+  // Fonction tirage avec animation
   function tirageAnime() {
-  const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
-  const liens = Array.from(document.querySelectorAll('#exerciseTable a'));
-  const liensDisponibles = liens.filter(lien => {
-    const num = parseInt(lien.textContent);
-    return !done.includes(num);
-  });
-
-  if (liensDisponibles.length === 0) {
-    alert("Tous les exercices ont été réalisés !");
-    return;
-  }
-
-  let lienFinal = null;
-  let intervalId = null;
-  const duree = 3000; // Durée totale du tirage en ms
-  const interval = 300; // Intervalle de changement de surlignage en ms
-  const iterations = Math.floor(duree / interval);
-  let count = 0;
-
-  function pulseFinal(element) {
-    element.classList.add('pulse');
-    setTimeout(() => element.classList.remove('pulse'), 1500);
-  }
-
-  intervalId = setInterval(() => {
-    liens.forEach(lien => lien.style.backgroundColor = '');
-    // Choisir un indice aléatoire
-    const randBoite_4_1 = Math.floor(Math.random() * liensDisponibles.length);
-    lienFinal = liensDisponibles[randBoite_4_1];
-    lienFinal.style.backgroundColor = '#a3d2f7';  // bleu clair doux
-
-    count++;
-    if (count >= iterations) {
-      clearInterval(intervalId);
-      lienFinal.style.backgroundColor = 'orange';
-      pulseFinal(lienFinal);
-      setTimeout(() => {
-        window.location.href = lienFinal.href;
-      }, 1500);
-    }
-  }, interval);
-}
-
-
-</script>
-
-
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-if (params.get("reset") === "true") {
-  localStorage.removeItem('doneExercises');
-}
-    const total = 30;
     const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+    const liens = Array.from(document.querySelectorAll('#exerciseTable a'));
+    const liensDisponibles = liens.filter(lien => !done.includes(parseInt(lien.textContent)));
 
-    const table = document.getElementById('exerciseTable');
-
-     let counter = 1;
-    for (let row = 0; row < 6; row++) {
-      const tr = document.createElement('tr');
-      for (let col = 0; col < 5; col++) {
-        const td = document.createElement('td');
-        if (counter <= total) {
-          const a = document.createElement('a');
-          a.textContent = counter;
-          a.href = `Exercices/exercice${counter}.html`;
-          if (done.includes(counter)) {
-            a.classList.add('done');
-          }
-          td.appendChild(a);
-          counter++;
-        }
-        tr.appendChild(td);
-      }
-      table.appendChild(tr);
+    if (liensDisponibles.length === 0) {
+      alert("Tous les exercices ont été réalisés !");
+      return;
     }
-    if (done.length === total) {
-  afficherFelicitation();
-  document.getElementById('tirageBtn')?.setAttribute('disabled', true);
-}
-  </script>
 
-  <button onclick="resetDone()" style="margin-top: 20px;">🔄 Réinitialiser les exercices</button>
+    let lienFinal = null;
+    let intervalId = null;
+    const duree = 3000;
+    const interval = 300;
+    const iterations = Math.floor(duree / interval);
+    let count = 0;
 
+    function pulseFinal(element) {
+      element.classList.add('pulse');
+      setTimeout(() => element.classList.remove('pulse'), 1500);
+    }
 
+    intervalId = setInterval(() => {
+      liens.forEach(lien => lien.style.backgroundColor = '');
+      const randIndex = Math.floor(Math.random() * liensDisponibles.length);
+      lienFinal = liensDisponibles[randIndex];
+      lienFinal.style.backgroundColor = '#a3d2f7';
 
-<script>
-    function resetDone() {
-  localStorage.removeItem('doneExercises');
-  location.reload();
-}
+      count++;
+      if (count >= iterations) {
+        clearInterval(intervalId);
+        lienFinal.style.backgroundColor = 'orange';
+        pulseFinal(lienFinal);
+        setTimeout(() => {
+          window.location.href = lienFinal.href;
+        }, 1500);
+      }
+    }, interval);
+  }
 
-
-  </script>
-
-
-
-
+  // Réinitialisation
+  function resetDone() {
+    localStorage.removeItem('doneExercises');
+    location.reload();
+  }
+</script>
 
 </body>
 </html>
