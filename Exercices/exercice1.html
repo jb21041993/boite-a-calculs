@@ -39,8 +39,8 @@
       background: rgba(255 255 255 / 0.85);
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       border-radius: 20px;
-      max-width: 500px;
-      width: 100%;
+      max-width: 700px;
+  width: 90vw;
       padding: 30px 40px;
       position: relative;
       display: flex;
@@ -111,10 +111,11 @@
       line-height: 1.5;
     }
 
-    .solution.open {
-      max-height: 500px; /* suffisant pour le contenu */
-      padding: 15px;
-    }
+     .solution.open {
+  max-height: 300px;     /* tu peux ajuster cette valeur */
+  overflow-y: auto;      /* défilement vertical */
+  padding: 10px 15px;
+}
 
     .feedback {
       text-align: center;
@@ -201,7 +202,7 @@
     </div>
 
     <div id="solution" class="solution">
-      <p><strong>Solution :</strong><br>
+      <p>
       \(A=(\textcolor{blue}{-}12)+(\textcolor{blue}{-}15)\)</p>
       <p>\(A=(\textcolor{blue}{-}27)\)</p>
 
