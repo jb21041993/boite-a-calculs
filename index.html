@@ -40,7 +40,7 @@
     }
 
       /* Style pour lien désactivé */
- .disabled-link {
+.disabled-link {
     color: gray !important;
     pointer-events: none;
     opacity: 0.6;
@@ -48,11 +48,11 @@
     position: relative;
   }
 
-  /* Style de l’infobulle */
+  /* Infobulle */
   .disabled-link::after {
     content: "🚧 En construction";
     position: absolute;
-    bottom: 120%; /* au-dessus du lien */
+    bottom: 120%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -64,6 +64,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease-in-out;
+    z-index: 999;
   }
 
   .disabled-link:hover::after {
@@ -258,9 +259,8 @@
     © 2025 Jean-Benoît Joseph • Boîtes à calculs - Mathématiques
   </footer>
 
-  <script>
-    // Empêche le clic des boutons principaux de recharger la page
-   document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
   const liens = document.querySelectorAll(".dropdown a, .level-button, table a");
 
   liens.forEach(lien => {
@@ -269,9 +269,11 @@
     // Ignorer les liens externes ou vides
     if (!url || url.startsWith("#") || url.startsWith("http")) return;
 
-    fetch(url, { method: "HEAD" })
-      .then(response => {
-        if (!response.ok) {
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        // Si la page contient "404" ou est vide → lien désactivé
+        if (text.includes("404") || text.trim().length === 0) {
           lien.classList.add("disabled-link");
         }
       })
@@ -280,8 +282,7 @@
       });
   });
 });
-
-  </script>
+</script>
 
   
 
