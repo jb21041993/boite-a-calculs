@@ -2,26 +2,41 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page d'accueil - Exercices de Maths</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-   body {
-      font-family: 'Segoe UI', sans-serif;
+    /* Reset + base */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #c7c4bd, #d4cebe);
+      color: #333;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
     }
 
     header {
-      background: linear-gradient(135deg,  #000000,#c7c4bd);
+      background: linear-gradient(135deg, #000000, #c7c4bd);
       color: white;
-      padding: 30px 0;
+      padding: 40px 20px;
       text-align: center;
-      font-size: 32px;
+      font-size: 2.5rem;
       font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .container {
@@ -31,102 +46,126 @@
       text-align: center;
     }
 
- .button-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: nowrap; /* rester sur une seule ligne */
-  margin-top: 40px;
-}
-/* Uniformiser les boutons avec et sans menu */
-.level-button,
-.dropdown {
-  width: 220px; /* Même largeur pour tous */
-}
-
-    .dropdown {
-  position: relative;
-  width: 200px; /* largeur du bouton */
-}
-
-  /* Boutons */
-.level-button {
-  background-color: black;
-  color: white;
-  padding: 20px 0;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Hover et zoom */
-.level-button:hover {
-  transform: scale(1.05);
-}
-
-    /* Hover personnalisé pour chaque bouton */
-    .troisieme:hover {
-      background-color: #ef5c52; /* rouge */
-      color: white;
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 40px;
     }
 
-    .terminale:hover {
-      background-color: #2196f3; /* bleu */
+    .dropdown {
+      position: relative;
+      width: 250px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover {
+      transform: scale(1.05);
+    }
+
+    .level-button {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
       color: white;
+      padding: 20px;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .level-button:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* Couleurs de hover spécifiques */
+    .quatrieme:hover {
+      background-color: #e67e22;
+    }
+
+    .troisieme:hover {
+      background-color: #e74c3c;
     }
 
     .seconde:hover {
-      background-color: #ce6aef; /* vert */
-      color: white;
+      background-color: #9b59b6;
     }
 
-    .quatrieme:hover {
-      background-color: #e8a745; /* orange */
-      color: white;
+    .terminale:hover {
+      background-color: #3498db;
     }
 
-        /* Dropdown menu */
-  .dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%; /* Même largeur que le bouton parent */
-  background-color: white;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-  z-index: 1;
-  border-radius: 10px;
-  overflow: hidden;
-}
+    /* Dropdown menu */
+     /* Dropdown menu */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%; /* Même largeur que le bouton parent */
+      background-color: white;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+      z-index: 1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-.dropdown-content a {
-  display: block;
-  padding: 12px 16px;
-  color: black;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: black;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
 
-.dropdown-content a:hover {
-  background-color: #f2f2f2;
-}
+    .dropdown-content a:hover {
+      background-color: #f2f2f2;
+    }
 
-/* Afficher le menu au survol */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+    /* Afficher le menu au survol */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
 
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
 
+    /* Responsive */
+    @media (max-width: 768px) {
+      .button-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .dropdown {
+        width: 90%;
+      }
+
+      header {
+        font-size: 1.8rem;
+        padding: 30px 10px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -136,44 +175,68 @@
   <div class="container">
     <div class="button-row">
 
-  <div class="dropdown">
-    <a href="#" class="level-button quatrieme">Quatrième</a>
-    <div class="dropdown-content">
-      <a href="Boite_4_1.html">Boîte à calculs n°1</a>
-      <a href="quatrieme_chap2.html">Chapitre 2</a>
-      <a href="quatrieme_chap3.html">Chapitre 3</a>
-    </div>
-  </div>
+      <div class="dropdown">
+        <a href="#" class="level-button quatrieme">
+          <i class="fas fa-calculator"></i> Quatrième
+        </a>
+        <div class="dropdown-content">
+          <a href="Boite_4_1.html">Boîte à calculs n°1</a>
+          <a href="quatrieme_chap2.html">Chapitre 2</a>
+          <a href="quatrieme_chap3.html">Chapitre 3</a>
+        </div>
+      </div>
 
-  <div class="dropdown">
-    <a href="#" class="level-button troisieme">Troisième</a>
-    <div class="dropdown-content">
-      <a href="troisieme_chap1.html">Chapitre 1</a>
-      <a href="troisieme_chap2.html">Chapitre 2</a>
-      <a href="troisieme_chap3.html">Chapitre 3</a>
-    </div>
-  </div>
+      <div class="dropdown">
+        <a href="#" class="level-button troisieme">
+          <i class="fas fa-square-root-alt"></i> Troisième
+        </a>
+        <div class="dropdown-content">
+          <a href="troisieme_chap1.html">Chapitre 1</a>
+          <a href="troisieme_chap2.html">Chapitre 2</a>
+          <a href="troisieme_chap3.html">Chapitre 3</a>
+        </div>
+      </div>
 
-  <div class="dropdown">
-    <a href="#" class="level-button seconde">Seconde</a>
-    <div class="dropdown-content">
-      <a href="seconde_chap1.html">Chapitre 1</a>
-      <a href="seconde_chap2.html">Chapitre 2</a>
-      <a href="seconde_chap3.html">Chapitre 3</a>
-    </div>
-  </div>
+      <div class="dropdown">
+        <a href="#" class="level-button seconde">
+          <i class="fa-solid fa-house"></i> Seconde
+        </a>
+        <div class="dropdown-content">
+          <a href="seconde_chap1.html">Chapitre 1</a>
+          <a href="seconde_chap2.html">Chapitre 2</a>
+          <a href="seconde_chap3.html">Chapitre 3</a>
+        </div>
+      </div>
 
-  <div class="dropdown">
-    <a href="#" class="level-button terminale">Terminale Spécialité</a>
-    <div class="dropdown-content">
-      <a href="Boite_term_1.html">Boîte à calculs n°1</a>
-      <a href="terminale_chap2.html">Chapitre 2</a>
-      <a href="terminale_chap3.html">Chapitre 3</a>
-    </div>
+      <div class="dropdown">
+  <a href="#" class="level-button terminale">
+          <i class="fas fa-chart-line"></i> Terminale Spécialité
+        </a>
+  <div class="dropdown-content">
+    <a href="terminale_chap1.html">Chapitre 1</a>
+    <a href="terminale_chap2.html">Chapitre 2</a>
+    <a href="terminale_chap3.html">Chapitre 3</a>
   </div>
-
 </div>
+
+
+    </div>
   </div>
+
+  <footer>
+    © 2025 Jean-Benoît Joseph • Boîtes à calculs - Mathématiques
+  </footer>
+
+  <script>
+    // Empêche le clic des boutons principaux de recharger la page
+    document.querySelectorAll('.level-button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        if (btn.getAttribute('href') === '#') {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
