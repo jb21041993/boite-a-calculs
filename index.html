@@ -290,9 +290,9 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-const jagger = "1234";       // code 4e
-const tchoupette = "abcd";   // code Terminale
-const troisieme = "xyz789";  // code 3e
+const jagger = "1234";       
+const tchoupette = "abcd";   
+const glasgow = "xyz789";  
 
 document.querySelectorAll('.dropdown-content a').forEach(link => {
   link.addEventListener('click', function(e) {
@@ -324,7 +324,7 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
         if (isTerminaleLink) {
           correctCode = tchoupette;
         } else if (isTroisiemeLink) {
-          correctCode = troisieme;
+          correctCode = glasgow;
         } else {
           correctCode = jagger;
         }

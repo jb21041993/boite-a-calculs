@@ -138,7 +138,7 @@
 
    button:hover:not(:disabled) {
   background-color: #ff4d4d;  /* bleu vif */
-  box-shadow: 0 8px 16px rgb(30, 144, 255);
+  box-shadow: 0 8px 16px rgb(255, 77, 77);
   transform: translateY(-2px) scale(1.05);
 }
 
@@ -296,7 +296,7 @@
       count++;
       if (count >= iterations) {
         clearInterval(intervalId);
-        lienFinal.style.backgroundColor = '#cc0000';
+        lienFinal.style.backgroundColor = '#ff4d4d';
         pulseFinal(lienFinal);
         setTimeout(() => {
           window.location.href = lienFinal.href;
