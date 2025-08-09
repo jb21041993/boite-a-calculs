@@ -290,8 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-const genericCode = "1234";
-const terminalCode = "abcd";
+const jagger = "1234";
+const tchoupette = "abcd";
 
 document.querySelectorAll('.dropdown-content a').forEach(link => {
   link.addEventListener('click', function(e) {
@@ -320,7 +320,7 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        const correctCode = isTerminaleLink ? terminalCode : genericCode;
+        const correctCode = isTerminaleLink ? tchoupette : jagger;
 
         if (result.value === correctCode) {
           window.location.href = link.href;
