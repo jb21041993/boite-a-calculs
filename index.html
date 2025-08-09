@@ -234,7 +234,7 @@
           <i class="fa-solid fa-house"></i> Seconde
         </a>
         <div class="dropdown-content">
-          <a href="seconde_chap1.html">Boîte à calculs n°1</a>
+          <a href="Boite_seconde_1.html">Boîte à calculs n°1</a>
           <a href="seconde_chap2.html">Boîte à calculs n°2</a>
           <a href="seconde_chap3.html">Boîte à calculs n°3</a>
         </div>
@@ -293,6 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const jagger = "1234";       
 const tchoupette = "abcd";   
 const glasgow = "xyz789";  
+const salto = "abc123"; 
 
 document.querySelectorAll('.dropdown-content a').forEach(link => {
   link.addEventListener('click', function(e) {
@@ -303,6 +304,7 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
 
     const isTerminaleLink = levelButton ? levelButton.classList.contains('terminale') : false;
     const isTroisiemeLink = levelButton ? levelButton.classList.contains('troisieme') : false;
+    const isSecondeLink = levelButton ? levelButton.classList.contains('seconde') : false;
 
     Swal.fire({
       title: '🔐 Accès protégé',
@@ -325,6 +327,8 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
           correctCode = tchoupette;
         } else if (isTroisiemeLink) {
           correctCode = glasgow;
+          } else if (isSecondeLink) {
+          correctCode = salto;
         } else {
           correctCode = jagger;
         }
