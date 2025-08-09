@@ -98,9 +98,9 @@
     }
 
     a.exercise-link:hover:not(.done) {
-      background-color: #f7ca82;
+      background-color: #82b7f7;
       color: white;
-      border-color: #f5b041;
+      border-color: #82b7f7;
       box-shadow: 0 6px 12px rgba(41, 128, 185, 0.6);
       transform: scale(1.15);
     }
@@ -136,11 +136,11 @@
       gap: 10px;
     }
 
-    button:hover:not(:disabled) {
-      background-color: #f5b041;
-      box-shadow: 0 8px 16px rgb(255, 184, 6);
-      transform: translateY(-2px) scale(1.05);
-    }
+   button:hover:not(:disabled) {
+  background-color: #1e90ff;  /* bleu vif */
+  box-shadow: 0 8px 16px rgb(30, 144, 255);
+  transform: translateY(-2px) scale(1.05);
+}
 
     button:disabled {
       opacity: 0.5;
@@ -296,7 +296,7 @@
       count++;
       if (count >= iterations) {
         clearInterval(intervalId);
-        lienFinal.style.backgroundColor = 'orange';
+        lienFinal.style.backgroundColor = '#1e90ff';
         pulseFinal(lienFinal);
         setTimeout(() => {
           window.location.href = lienFinal.href;
