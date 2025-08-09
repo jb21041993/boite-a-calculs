@@ -98,10 +98,10 @@
     }
 
     a.exercise-link:hover:not(.done) {
-      background-color: #82b7f7;
+      background-color: #ff9999;
       color: white;
-      border-color: #82b7f7;
-      box-shadow: 0 6px 12px rgba(41, 128, 185, 0.6);
+      border-color: #ff9999;
+      box-shadow: 0 6px 12px rgba(255, 77, 77, 0.6);
       transform: scale(1.15);
     }
 
@@ -137,7 +137,7 @@
     }
 
    button:hover:not(:disabled) {
-  background-color: #1e90ff;  /* bleu vif */
+  background-color: #ff4d4d;  /* bleu vif */
   box-shadow: 0 8px 16px rgb(30, 144, 255);
   transform: translateY(-2px) scale(1.05);
 }
@@ -170,7 +170,7 @@
     }
 
     @keyframes pulseAnim {
-      0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); }
+      0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
       70% { box-shadow: 0 0 15px 10px rgba(52, 152, 219, 0); }
       100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
     }
@@ -200,7 +200,7 @@
 <body>
 
 <header>
-  Tableau des exercices
+  Calcul numérique
 </header>
 
 <div class="container">
@@ -296,7 +296,7 @@
       count++;
       if (count >= iterations) {
         clearInterval(intervalId);
-        lienFinal.style.backgroundColor = '#1e90ff';
+        lienFinal.style.backgroundColor = '#cc0000';
         pulseFinal(lienFinal);
         setTimeout(() => {
           window.location.href = lienFinal.href;
