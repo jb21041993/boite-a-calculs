@@ -299,8 +299,16 @@
 
   // Réinitialisation
   function resetDone() {
-    localStorage.removeItem('doneExercises');
-    location.reload();
+    // Supprimer la liste des exercices terminés
+  localStorage.removeItem('doneExercises');
+
+  // Supprimer tous les compteurs de tentatives
+  for (let key in localStorage) {
+    if (key.startsWith('retries_exo_')) {
+      localStorage.removeItem(key);
+    }
+  }
+  location.reload(); // recharge la page
   }
 </script>
 
