@@ -290,16 +290,19 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  //
-  const genericCode = "1234";
+const genericCode = "1234";
 const terminalCode = "abcd";
 
 document.querySelectorAll('.dropdown-content a').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
 
-    // Vérifier si le lien est dans la boîte Terminale (4e dropdown)
-    const isTerminaleLink = link.closest('.dropdown').querySelector('.level-button').classList.contains('terminale');
+    // Trouver le bouton parent dans le même dropdown
+    const dropdown = link.closest('.dropdown');
+    const levelButton = dropdown ? dropdown.querySelector('.level-button') : null;
+
+    // Vérifier si le bouton a la classe 'terminale'
+    const isTerminaleLink = levelButton ? levelButton.classList.contains('terminale') : false;
 
     Swal.fire({
       title: '🔐 Accès protégé',
@@ -317,7 +320,6 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        // Utiliser le code spécifique selon la section
         const correctCode = isTerminaleLink ? terminalCode : genericCode;
 
         if (result.value === correctCode) {
@@ -333,6 +335,7 @@ document.querySelectorAll('.dropdown-content a').forEach(link => {
     });
   });
 });
+
 
 </script>
 
