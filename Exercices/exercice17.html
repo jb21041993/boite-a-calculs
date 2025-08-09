@@ -2,86 +2,183 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Exercice 1 - Solution</title>
+  <title>Exercice 17</title>
+
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      padding: 40px;
+    /* Reset et base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
-    .solution-container {
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #c7c4bd, #d4cebe);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px 40px;
+      color: #333;
+      transition: background 0.3s ease;
+    }
+
+    header {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .exercise-box {
+      background: rgba(255 255 255 / 0.85);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      border-radius: 20px;
+      max-width: 700px;
+  width: 90vw;
+      padding: 30px 40px;
       position: relative;
-      border-left: 4px solid black;
-      border-bottom: 4px solid black;
-      padding-left: 60px;
-      padding-bottom: 30px;
-      margin-top: 50px;
-      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
 
     .numero {
       position: absolute;
-      left: -25px;
-      top: -10px;
-      background-color: #fde9da;
-      border: 2px solid black;
+      top: -25px;
+      left: 30px;
+      background: #f5b041;
+      color: black;
+      font-weight: 700;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      text-align: center;
-      line-height: 38px;
-      font-weight: bold;
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .titre {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 20px;
-      position: relative;
-      left: -25px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #222;
     }
 
-   .solution {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  background: #f3f3f3;
-  border-left: 4px solid #f09412;
-  padding: 0 15px;
-  margin-top: 0px;
-}
-
-/* Lorsque la solution est ouverte : hauteur max fixée + défilement vertical */
-.solution.open {
-  max-height: 300px;     /* tu peux ajuster cette valeur */
-  overflow-y: auto;      /* défilement vertical */
-  padding: 10px 15px;
-}
     .toggle-container {
       cursor: pointer;
       display: flex;
       align-items: center;
-      margin-top: 20px;
-      font-weight: bold;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f39c12;
+      user-select: none;
+      transition: color 0.3s ease;
     }
+
+    .toggle-container:hover {
+      color: #d67d0e;
+    }
+
     .arrow {
-      margin-right: 8px;
+      display: inline-block;
       transition: transform 0.3s ease;
+      font-size: 1.3rem;
+      transform-origin: center;
     }
+
     .arrow.down {
       transform: rotate(90deg);
     }
-    .feedback {
-      margin-top: 30px;
-      text-align: center;
+
+    .solution {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.5s ease;
+      background: #fde9da;
+      border-left: 5px solid #f5b041;
+      padding: 0 15px;
+      border-radius: 0 10px 10px 0;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
     }
+
+     .solution.open {
+  max-height: 300px;     /* tu peux ajuster cette valeur */
+  overflow-y: auto;      /* défilement vertical */
+  padding: 10px 15px;
+}
+
+    .feedback {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .feedback p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .feedback-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+    }
+
     .feedback button {
-      font-size: 24px;
-      margin: 0 10px;
-      padding: 10px 20px;
+      background: #c8c6c4;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 10px;
+      font-size: 1.5rem;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      flex: 1;
+      max-width: 100px;
+    }
+
+    .feedback button:hover {
+      background-color: #d67d0e;
+      transform: scale(1.1);
+    }
+
+    #compteur {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #555;
+      text-align: center;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .exercise-box {
+        padding: 25px 20px;
+        max-width: 100%;
+      }
+
+      .numero {
+        top: -20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
     }
   </style>
 
@@ -93,62 +190,69 @@
 </head>
 <body>
 
-<div class="solution-container">
-  <div class="numero">17</div>
-  <div class="titre">Calculer en détaillant les étapes : \(Q=(-9)+(+13)+(+7)+(-11)\)</div>
-  
+  <header>Exercice 17</header>
 
-  <div class="toggle-container" onclick="toggleSolution()">
-    <span id="arrow" class="arrow">▶</span>
-    <span>Voir la solution</span>
+  <div class="exercise-box">
+    
+     <div class="titre">Calculer en détaillant les étapes : \(Q=(-9)+(+13)+(+7)+(-11)\)</div>
+
+    <div class="toggle-container" onclick="toggleSolution()">
+      <span id="arrow" class="arrow">▶</span>
+      <span>Voir la solution</span>
+    </div>
+
+    <div id="solution" class="solution">
+     </p> \(E=(\textcolor{green}{+}24)+(-20)\)</p>
+
+  </p> \(E=(\textcolor{green}{+}4)\)</p>
+
+      <div class="feedback">
+        <p>As-tu réussi cet exercice ?</p>
+        <div class="feedback-buttons">
+          <button onclick="markAsDone(17)" aria-label="Exercice réussi">👍</button>
+          <button onclick="handleFailure()" aria-label="Exercice non réussi">👎</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="solution" class="solution">
-    <p><strong>Solution :</strong> <br>  </p>
-        
-  </p> \(B=(-3)+({\textcolor{green}{+}}16)\)</p>
+  <p id="compteur"></p>
 
-  </p> \(B=(+13)\)</p>
+<script>
+  function toggleSolution() {
+    const solution = document.getElementById("solution");
+    const arrow = document.getElementById("arrow");
+    solution.classList.toggle("open");
+    arrow.classList.toggle("down");
+  }
 
-    <div class="feedback">
-    <p>As-tu réussi cet exercice ?</p>
-    <button onclick="markAsDone(17)">👍</button>
-    <button onclick="handleFailure()">👎</button>
-  </div>
-
-  </div>
-
-</div>
-
-
-
-
-  <script>
-    function toggleSolution() {
-      const solution = document.getElementById("solution");
-      const arrow = document.getElementById("arrow");
-      solution.classList.toggle("open");
-      arrow.classList.toggle("down");
+  function markAsDone(num) {
+    const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
+    if (!done.includes(num)) {
+      done.push(num);
+      localStorage.setItem('doneExercises', JSON.stringify(done));
     }
+    window.location.href = "../Boite_4_1.html";
+  }
 
-    function markAsDone(num) {
-      // Marquer l'exercice comme terminé
-      const done = JSON.parse(localStorage.getItem('doneExercises') || '[]');
-      if (!done.includes(num)) {
-        done.push(num);
-        localStorage.setItem('doneExercises', JSON.stringify(done));
-      }
-      // Rediriger vers la page du tableau
-      window.location.href = "../Boite_4_1.html";
-    }
-
-    function handleFailure() {
+  function handleFailure() {
     alert("Courage ! Réessaie plus tard.");
     window.location.href = "../Boite_4_1.html";
   }
-  </script>
 
+  // Affiche le nombre de tentatives
+  const url = window.location.href;
+  const matchexo = url.match(/exercice(\d+)\.html/);
+  const exoNum = matchexo ? matchexo[1] : null;
 
+  if (exoNum) {
+    const key = `retries_exo_${exoNum}`;
+    const current = parseInt(localStorage.getItem(key) || '0');
+    localStorage.setItem(key, current + 1);
+    document.getElementById("compteur").textContent = 
+      `🔁 Cet exercice a été tenté ${current + 1} fois.`;
+  }
+</script>
 
 </body>
 </html>
