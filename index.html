@@ -291,43 +291,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
   //
-  const jagger = "1234";
+  const genericCode = "1234";
+const terminalCode = "abcd";
 
-  // Cibler tous les liens des menus déroulants
-  document.querySelectorAll('.dropdown-content a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault(); // Empêche la navigation immédiate
+document.querySelectorAll('.dropdown-content a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
 
-      Swal.fire({
-        title: '🔐 Accès protégé',
-        text: 'Veuillez entrer le code secret pour continuer',
-        input: 'password',
-        inputPlaceholder: 'Entrez le code',
-        showCancelButton: true,
-        confirmButtonText: 'Valider',
-        cancelButtonText: 'Annuler',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        background: '#f7f7f7',
-        customClass: {
-          input: 'swal2-input'
+    // Vérifier si le lien est dans la boîte Terminale (4e dropdown)
+    const isTerminaleLink = link.closest('.dropdown').querySelector('.level-button').classList.contains('terminale');
+
+    Swal.fire({
+      title: '🔐 Accès protégé',
+      text: 'Veuillez entrer le code secret pour continuer',
+      input: 'password',
+      inputPlaceholder: 'Entrez le code',
+      showCancelButton: true,
+      confirmButtonText: 'Valider',
+      cancelButtonText: 'Annuler',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      background: '#f7f7f7',
+      customClass: {
+        input: 'swal2-input'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Utiliser le code spécifique selon la section
+        const correctCode = isTerminaleLink ? terminalCode : genericCode;
+
+        if (result.value === correctCode) {
+          window.location.href = link.href;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Code incorrect',
+            text: 'Accès refusé !'
+          });
         }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          if (result.value === jagger) {
-            // Si code correct → aller vers la page
-            window.location.href = link.href;
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Code incorrect',
-              text: 'Accès refusé !'
-            });
-          }
-        }
-      });
+      }
     });
   });
+});
+
 </script>
 
   
